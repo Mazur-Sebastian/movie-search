@@ -14,8 +14,8 @@ export const SearchInput = ({ query, handleQuery }: PropsTypes) => {
     };
 
     return (
-        <div>
+        <>
             <Input type="text" onChange={handleSearch} value={query} />
-        </div>
+        </>
     );
 };

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { SearchInput } from './components/SearchInput';
+import { LayoutWrapper, Text } from './styles';
 import { QueryValue } from './types';
 
 export const App = () => {
@@ -11,9 +12,9 @@ export const App = () => {
     };
 
     return (
-        <>
-            <h1>Search movies</h1>
+        <LayoutWrapper>
+            <Text size={5}>Search movies</Text>
             <SearchInput query={query} handleQuery={handleSearch} />
-        </>
+        </LayoutWrapper>
     );
 };

@@ -9,7 +9,7 @@ interface PropsTypes {
 }
 
 export const MovieList = ({ query }: PropsTypes) => {
-    const { movieList, totalPages, currentPage, setCurrentPage, error } = useMovies(
+    const { movieList, totalPages, currentPage, setCurrentPage, isLoading, error } = useMovies(
         rootService,
         query,
     );
@@ -20,16 +20,21 @@ export const MovieList = ({ query }: PropsTypes) => {
 
     return (
         <>
-            <CenterWrapper>
-                {!error && movieList.map(movie => <Card data={movie} key={movie.imdbID} />)}
-                {error && <Text size={2}>{error}</Text>}
-            </CenterWrapper>
-            {totalPages !== 0 && (
-                <Pagination
-                    totalPages={totalPages}
-                    currentPage={currentPage}
-                    handlePageChange={handlePageChange}
-                />
+            {isLoading && <Text size={2}>Loading...</Text>}
+            {!isLoading && (
+                <>
+                    <CenterWrapper>
+                        {!error && movieList.map(movie => <Card data={movie} key={movie.imdbID} />)}
+                        {error && <Text size={2}>{error}</Text>}
+                    </CenterWrapper>
+                    {totalPages !== 0 && (
+                        <Pagination
+                            totalPages={totalPages}
+                            currentPage={currentPage}
+                            handlePageChange={handlePageChange}
+                        />
+                    )}
+                </>
             )}
         </>
     );

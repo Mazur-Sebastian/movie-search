@@ -7,12 +7,14 @@ export const useMovies = ({ movieService }: RootService, query: string) => {
     const [movieList, setMovieList] = useState<MovieItem[]>([]);
     const [totalPages, setTotalPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
 
     const handleMovieList = (movieList: MovieItem[], totalPages: number, errorMsg: string) => {
         setError(errorMsg);
         setMovieList(movieList);
         setTotalPages(() => totalPages / 10);
+        setIsLoading(false);
     };
 
     useEffect(() => {
@@ -20,6 +22,7 @@ export const useMovies = ({ movieService }: RootService, query: string) => {
     }, [query, setCurrentPage]);
 
     useEffect(() => {
+        setIsLoading(true);
         movieService
             .getMovieList({ s: query, page: currentPage })
             .then(data =>
@@ -28,9 +31,10 @@ export const useMovies = ({ movieService }: RootService, query: string) => {
                     : handleMovieList(removeDuplicates(data.Search), Number(data.totalResults), ''),
             )
             .catch(e => {
+                setIsLoading(false);
                 setError(e.msg);
             });
     }, [query, currentPage, movieService]);
 
-    return { movieList, totalPages, currentPage, setCurrentPage, error };
+    return { movieList, totalPages, currentPage, setCurrentPage, error, isLoading };
 };

@@ -24,12 +24,13 @@ export const MovieList = ({ query }: PropsTypes) => {
                 {!error && movieList.map(movie => <Card data={movie} key={movie.imdbID} />)}
                 {error && <Text size={2}>{error}</Text>}
             </CenterWrapper>
-
-            <Pagination
-                totalPages={totalPages}
-                currentPage={currentPage}
-                handlePageChange={handlePageChange}
-            />
+            {totalPages !== 0 && (
+                <Pagination
+                    totalPages={totalPages}
+                    currentPage={currentPage}
+                    handlePageChange={handlePageChange}
+                />
+            )}
         </>
     );
 };

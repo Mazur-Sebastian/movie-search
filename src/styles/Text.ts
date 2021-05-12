@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 interface Props {
     size?: number;
+    alignText?: boolean;
 }
 
 export const Text = styled.span<Props>`
@@ -10,4 +11,5 @@ export const Text = styled.span<Props>`
     color: black;
     font-size: ${props => `${props.size}rem` || '1rem'};
     padding: 0.5rem;
+    text-align: ${props => (props.alignText ? 'center' : 'none')}; ;
 `;

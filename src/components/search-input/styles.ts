@@ -15,7 +15,7 @@ export const SearchInput = styled.input`
     flex: 100%;
     height: 34px;
     padding: 0.4rem 1rem;
-    font-size: 1rem;
+    font-size: 1.5rem;
     border-radius: 24px;
     border: none;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);

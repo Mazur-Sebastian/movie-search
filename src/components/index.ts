@@ -1,2 +1,3 @@
-export { Card } from './Card';
-export { SearchInput } from './SearchInput';
+export { Card } from './card/Card';
+export { SearchInput } from './search-input/SearchInput';
+export { Pagination } from './pagination/Pagination';

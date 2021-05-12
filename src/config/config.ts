@@ -1,5 +1,5 @@
 export const appConfig = {
-    omdbUrl: 'http://www.omdbapi.com/',
+    omdbUrl: 'https://www.omdbapi.com/',
     omdbApiKey: process.env.REACT_APP_OMDB_API || '',
 };
 

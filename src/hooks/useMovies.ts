@@ -13,9 +13,11 @@ export const useMovies = ({ movieService }: RootService, query: string) => {
     const handleMovieList = (movieList: MovieItem[], totalPages: number, errorMsg: string) => {
         setError(errorMsg);
         setMovieList(movieList);
-        setTotalPages(() => totalPages / 10);
+        setTotalPages(() => Math.floor(totalPages / 10));
         setIsLoading(false);
     };
+
+    const prepareQuery = (query: string) => query.split(' ').filter(Boolean).join(' ');
 
     useEffect(() => {
         setCurrentPage(1);
@@ -24,7 +26,7 @@ export const useMovies = ({ movieService }: RootService, query: string) => {
     useEffect(() => {
         setIsLoading(true);
         movieService
-            .getMovieList({ s: query, page: currentPage })
+            .getMovieList({ s: prepareQuery(query), page: currentPage })
             .then(data =>
                 data.Response === 'False'
                     ? handleMovieList([], 0, data.Error)

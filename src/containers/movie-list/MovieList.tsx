@@ -14,8 +14,8 @@ export const MovieList = ({ query }: PropsTypes) => {
         query,
     );
 
-    const handlePageChange = ({ selected }: { selected: number }) => {
-        setCurrentPage(selected + 1);
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
     };
 
     return (

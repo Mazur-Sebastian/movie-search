@@ -6,7 +6,6 @@ export type MovieItem = {
     Type: string;
     Poster: string;
 };
-export type SelectedPage = { selected: number };
 
 type MovieData = { Response: 'True'; Search: MovieItem[]; totalResults: string };
 type MovieError = { Response: 'False'; Error: string };
